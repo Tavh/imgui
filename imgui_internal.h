@@ -1895,40 +1895,40 @@ struct ImGuiTabBar
 // We use the terminology "Visible" to refer to a column that is not Hidden by user or settings. However it may still be out of view and clipped (see IsClipped).
 struct ImGuiTableColumn
 {
-    ImRect                  ClipRect;                       // Clipping rectangle for the column
-    ImGuiID                 UserID;                         // Optional, value passed to TableSetupColumn()
-    ImGuiTableColumnFlags   FlagsIn;                        // Flags as they were provided by user. See ImGuiTableColumnFlags_
-    ImGuiTableColumnFlags   Flags;                          // Effective flags. See ImGuiTableColumnFlags_
-    float                   MinX;                           // Absolute positions
-    float                   MaxX;
-    float                   InitStretchWeightOrWidth;       // Value passed to TableSetupColumn(). For Width it is a content width (_without padding_).
-    float                   StretchWeight;                  // Master width weight when (Flags & _WidthStretch). Often around ~1.0f initially.
-    float                   WidthAuto;                      // Automatic width
-    float                   WidthRequest;                   // Master width absolute value when !(Flags & _WidthStretch). When Stretch this is derived every frame from StretchWeight in TableUpdateLayout()
-    float                   WidthGiven;                     // Final/actual width visible == (MaxX - MinX), locked in TableUpdateLayout(). May be > WidthRequest to honor minimum width, may be < WidthRequest to honor shrinking columns down in tight space.
-    float                   WorkMinX;                       // Start position for the frame, currently ~(MinX + CellPaddingX)
-    float                   WorkMaxX;
-    float                   ContentMaxXFrozen;              // Contents maximum position for frozen rows (apart from headers), from which we can infer content width.
-    float                   ContentMaxXUnfrozen;
-    float                   ContentMaxXHeadersUsed;         // Contents maximum position for headers rows (regardless of freezing). TableHeader() automatically softclip itself + report ideal desired size, to avoid creating extraneous draw calls
-    float                   ContentMaxXHeadersIdeal;
-    ImS16                   NameOffset;                     // Offset into parent ColumnsNames[]
-    bool                    IsVisible;                      // Is the column not marked Hidden by the user? (even if off view, e.g. clipped by scrolling).
-    bool                    IsVisibleNextFrame;
-    bool                    IsClipped;                      // Is not actually in view (e.g. not overlapping the host window clipping rectangle).
-    bool                    IsSkipItems;                    // Do we want item submissions to this column to be ignored early on.
-    ImS8                    NavLayerCurrent;                // ImGuiNavLayer in 1 byte
-    ImS8                    DisplayOrder;                   // Index within Table's IndexToDisplayOrder[] (column may be reordered by users)
-    ImS8                    IndexWithinVisibleSet;          // Index within visible set (<= IndexToDisplayOrder)
-    ImS8                    PrevVisibleColumn;              // Index of prev visible column within Columns[], -1 if first visible column
-    ImS8                    NextVisibleColumn;              // Index of next visible column within Columns[], -1 if last visible column
-    ImS8                    SortOrder;                      // Index of this column within sort specs, -1 if not sorting on this column, 0 for single-sort, may be >0 on multi-sort
-    ImS8                    SortDirection;                  // ImGuiSortDirection_Ascending or ImGuiSortDirection_Descending
-    ImU8                    AutoFitQueue;                   // Queue of 8 values for the next 8 frames to request auto-fit
-    ImU8                    CannotSkipItemsQueue;           // Queue of 8 values for the next 8 frames to disable Clipped/SkipItem
-    ImU8                    DrawChannelCurrent;             // Index within DrawSplitter.Channels[]
-    ImU8                    DrawChannelFrozen;
-    ImU8                    DrawChannelUnfrozen;
+    ImRect              ClipRect;                   // Clipping rectangle for the column
+    ImGuiID             UserID;                     // Optional, value passed to TableSetupColumn()
+    ImGuiColumnFlags    FlagsIn;                    // Flags as they were provided by user. See ImGuiColumnFlags_
+    ImGuiColumnFlags    Flags;                      // Effective flags. See ImGuiColumnFlags_
+    float               MinX;                       // Absolute positions
+    float               MaxX;
+    float               InitStretchWeightOrWidth;   // Value passed to TableSetupColumn(). For Width it is a content width (_without padding_).
+    float               StretchWeight;              // Master width weight when (Flags & _WidthStretch). Often around ~1.0f initially.
+    float               WidthAuto;                  // Automatic width
+    float               WidthRequest;               // Master width absolute value when !(Flags & _WidthStretch). When Stretch this is derived every frame from StretchWeight in TableUpdateLayout()
+    float               WidthGiven;                 // Final/actual width visible == (MaxX - MinX), locked in TableUpdateLayout(). May be > WidthRequest to honor minimum width, may be < WidthRequest to honor shrinking columns down in tight space.
+    float               WorkMinX;                   // Start position for the frame, currently ~(MinX + CellPaddingX)
+    float               WorkMaxX;
+    float               ContentMaxXFrozen;          // Contents maximum position for frozen rows (apart from headers), from which we can infer content width.
+    float               ContentMaxXUnfrozen;
+    float               ContentMaxXHeadersUsed;     // Contents maximum position for headers rows (regardless of freezing). TableHeader() automatically softclip itself + report ideal desired size, to avoid creating extraneous draw calls
+    float               ContentMaxXHeadersIdeal;
+    ImS16               NameOffset;                 // Offset into parent ColumnsNames[]
+    bool                IsVisible;                  // Is the column not marked Hidden by the user? (even if off view, e.g. clipped by scrolling).
+    bool                IsVisibleNextFrame;
+    bool                IsClipped;                  // Is not actually in view (e.g. not overlapping the host window clipping rectangle).
+    bool                IsSkipItems;                // Do we want item submissions to this column to be ignored early on.
+    ImS8                NavLayerCurrent;            // ImGuiNavLayer in 1 byte
+    ImS8                DisplayOrder;               // Index within Table's IndexToDisplayOrder[] (column may be reordered by users)
+    ImS8                IndexWithinVisibleSet;      // Index within visible set (<= IndexToDisplayOrder)
+    ImS8                PrevVisibleColumn;          // Index of prev visible column within Columns[], -1 if first visible column
+    ImS8                NextVisibleColumn;          // Index of next visible column within Columns[], -1 if last visible column
+    ImS8                SortOrder;                  // Index of this column within sort specs, -1 if not sorting on this column, 0 for single-sort, may be >0 on multi-sort
+    ImS8                SortDirection;              // ImGuiSortDirection_Ascending or ImGuiSortDirection_Descending
+    ImU8                AutoFitQueue;               // Queue of 8 values for the next 8 frames to request auto-fit
+    ImU8                CannotSkipItemsQueue;       // Queue of 8 values for the next 8 frames to disable Clipped/SkipItem
+    ImU8                DrawChannelCurrent;         // Index within DrawSplitter.Channels[]
+    ImU8                DrawChannelFrozen;
+    ImU8                DrawChannelUnfrozen;
 
     ImGuiTableColumn()
     {
@@ -1976,8 +1976,8 @@ struct ImGuiTable
     float                       RowMinHeight;               // Height submitted to TableNextRow()
     float                       RowTextBaseline;
     float                       RowIndentOffsetX;
-    ImGuiTableRowFlags          RowFlags : 16;              // Current row flags, see ImGuiTableRowFlags_
-    ImGuiTableRowFlags          LastRowFlags : 16;
+    ImGuiRowFlags               RowFlags : 16;              // Current row flags, see ImGuiRowFlags_
+    ImGuiRowFlags               LastRowFlags : 16;
     int                         RowBgColorCounter;          // Counter for alternating background colors (can be fast-forwarded by e.g clipper), not same as CurrentRow because header rows typically don't increase this.
     ImU32                       RowBgColor[2];              // Background color override for current row.
     ImU32                       BorderColorStrong;
@@ -2041,7 +2041,7 @@ struct ImGuiTable
     bool                        IsInsideRow;                // Set when inside TableBeginRow()/TableEndRow().
     bool                        IsInitializing;
     bool                        IsSortSpecsDirty;
-    bool                        IsUsingHeaders;             // Set when the first row had the ImGuiTableRowFlags_Headers flag.
+    bool                        IsUsingHeaders;             // Set when the first row had the ImGuiRowFlags_Headers flag.
     bool                        IsContextPopupOpen;         // Set when default context menu is open (also see: ContextPopupColumn, InstanceInteracted).
     bool                        IsSettingsRequestLoad;
     bool                        IsSettingsDirty;            // Set when table settings have changed and needs to be reported into ImGuiTableSetttings data.

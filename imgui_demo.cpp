@@ -3303,25 +3303,25 @@ static void PopStyleCompact()
     ImGui::PopStyleVar(2);
 }
 
-static void EditTableColumnsFlags(ImGuiTableColumnFlags* p_flags)
+static void EditTableColumnsFlags(ImGuiColumnFlags* p_flags)
 {
-    ImGui::CheckboxFlags("_DefaultHide", p_flags, ImGuiTableColumnFlags_DefaultHide);
-    ImGui::CheckboxFlags("_DefaultSort", p_flags, ImGuiTableColumnFlags_DefaultSort);
-    ImGui::CheckboxFlags("_WidthStretch", p_flags, ImGuiTableColumnFlags_WidthStretch);
-    ImGui::CheckboxFlags("_WidthFixed", p_flags, ImGuiTableColumnFlags_WidthFixed);
-    ImGui::CheckboxFlags("_WidthAutoResize", p_flags, ImGuiTableColumnFlags_WidthAutoResize);
-    ImGui::CheckboxFlags("_NoResize", p_flags, ImGuiTableColumnFlags_NoResize);
-    ImGui::CheckboxFlags("_NoReorder", p_flags, ImGuiTableColumnFlags_NoReorder);
-    ImGui::CheckboxFlags("_NoHide", p_flags, ImGuiTableColumnFlags_NoHide);
-    ImGui::CheckboxFlags("_NoClip", p_flags, ImGuiTableColumnFlags_NoClip);
-    ImGui::CheckboxFlags("_NoSort", p_flags, ImGuiTableColumnFlags_NoSort);
-    ImGui::CheckboxFlags("_NoSortAscending", p_flags, ImGuiTableColumnFlags_NoSortAscending);
-    ImGui::CheckboxFlags("_NoSortDescending", p_flags, ImGuiTableColumnFlags_NoSortDescending);
-    ImGui::CheckboxFlags("_NoSHeaderWidth", p_flags, ImGuiTableColumnFlags_NoHeaderWidth);
-    ImGui::CheckboxFlags("_PreferSortAscending", p_flags, ImGuiTableColumnFlags_PreferSortAscending);
-    ImGui::CheckboxFlags("_PreferSortDescending", p_flags, ImGuiTableColumnFlags_PreferSortDescending);
-    ImGui::CheckboxFlags("_IndentEnable", p_flags, ImGuiTableColumnFlags_IndentEnable); ImGui::SameLine(); HelpMarker("Default for column 0");
-    ImGui::CheckboxFlags("_IndentDisable", p_flags, ImGuiTableColumnFlags_IndentDisable); ImGui::SameLine(); HelpMarker("Default for column >0");
+    ImGui::CheckboxFlags("_DefaultHide", p_flags, ImGuiColumnFlags_DefaultHide);
+    ImGui::CheckboxFlags("_DefaultSort", p_flags, ImGuiColumnFlags_DefaultSort);
+    ImGui::CheckboxFlags("_WidthStretch", p_flags, ImGuiColumnFlags_WidthStretch);
+    ImGui::CheckboxFlags("_WidthFixed", p_flags, ImGuiColumnFlags_WidthFixed);
+    ImGui::CheckboxFlags("_WidthAutoResize", p_flags, ImGuiColumnFlags_WidthAutoResize);
+    ImGui::CheckboxFlags("_NoResize", p_flags, ImGuiColumnFlags_NoResize);
+    ImGui::CheckboxFlags("_NoReorder", p_flags, ImGuiColumnFlags_NoReorder);
+    ImGui::CheckboxFlags("_NoHide", p_flags, ImGuiColumnFlags_NoHide);
+    ImGui::CheckboxFlags("_NoClip", p_flags, ImGuiColumnFlags_NoClip);
+    ImGui::CheckboxFlags("_NoSort", p_flags, ImGuiColumnFlags_NoSort);
+    ImGui::CheckboxFlags("_NoSortAscending", p_flags, ImGuiColumnFlags_NoSortAscending);
+    ImGui::CheckboxFlags("_NoSortDescending", p_flags, ImGuiColumnFlags_NoSortDescending);
+    ImGui::CheckboxFlags("_NoSHeaderWidth", p_flags, ImGuiColumnFlags_NoHeaderWidth);
+    ImGui::CheckboxFlags("_PreferSortAscending", p_flags, ImGuiColumnFlags_PreferSortAscending);
+    ImGui::CheckboxFlags("_PreferSortDescending", p_flags, ImGuiColumnFlags_PreferSortDescending);
+    ImGui::CheckboxFlags("_IndentEnable", p_flags, ImGuiColumnFlags_IndentEnable); ImGui::SameLine(); HelpMarker("Default for column 0");
+    ImGui::CheckboxFlags("_IndentDisable", p_flags, ImGuiColumnFlags_IndentDisable); ImGui::SameLine(); HelpMarker("Default for column >0");
 }
 
 static void ShowDemoWindowTables()
@@ -3565,9 +3565,9 @@ static void ShowDemoWindowTables()
 
         if (ImGui::BeginTable("##table1", 3, flags))
         {
-            ImGui::TableSetupColumn("AAA", ImGuiTableColumnFlags_WidthFixed);
-            ImGui::TableSetupColumn("BBB", ImGuiTableColumnFlags_WidthFixed);
-            ImGui::TableSetupColumn("CCC", ImGuiTableColumnFlags_WidthStretch);
+            ImGui::TableSetupColumn("AAA", ImGuiColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("BBB", ImGuiColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("CCC", ImGuiColumnFlags_WidthStretch);
             ImGui::TableHeadersRow();
             for (int row = 0; row < 5; row++)
             {
@@ -3582,12 +3582,12 @@ static void ShowDemoWindowTables()
         }
         if (ImGui::BeginTable("##table2", 6, flags))
         {
-            ImGui::TableSetupColumn("AAA", ImGuiTableColumnFlags_WidthFixed);
-            ImGui::TableSetupColumn("BBB", ImGuiTableColumnFlags_WidthFixed);
-            ImGui::TableSetupColumn("CCC", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_DefaultHide);
-            ImGui::TableSetupColumn("DDD", ImGuiTableColumnFlags_WidthStretch);
-            ImGui::TableSetupColumn("EEE", ImGuiTableColumnFlags_WidthStretch);
-            ImGui::TableSetupColumn("FFF", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_DefaultHide);
+            ImGui::TableSetupColumn("AAA", ImGuiColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("BBB", ImGuiColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("CCC", ImGuiColumnFlags_WidthFixed | ImGuiColumnFlags_DefaultHide);
+            ImGui::TableSetupColumn("DDD", ImGuiColumnFlags_WidthStretch);
+            ImGui::TableSetupColumn("EEE", ImGuiColumnFlags_WidthStretch);
+            ImGui::TableSetupColumn("FFF", ImGuiColumnFlags_WidthStretch | ImGuiColumnFlags_DefaultHide);
             ImGui::TableHeadersRow();
             for (int row = 0; row < 5; row++)
             {
@@ -3732,11 +3732,11 @@ static void ShowDemoWindowTables()
 
         if (ImGui::BeginTable("##table1", 4, flags))
         {
-            // We could also set ImGuiTableFlags_ColumnsWidthFixed on the table and all columns will default to ImGuiTableColumnFlags_WidthFixed.
-            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 15.0f);
-            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 30.0f);
-            ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 15.0f);
+            // We could also set ImGuiTableFlags_ColumnsWidthFixed on the table and all columns will default to ImGuiColumnFlags_WidthFixed.
+            ImGui::TableSetupColumn("", ImGuiColumnFlags_WidthFixed, 100.0f);
+            ImGui::TableSetupColumn("", ImGuiColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 15.0f);
+            ImGui::TableSetupColumn("", ImGuiColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 30.0f);
+            ImGui::TableSetupColumn("", ImGuiColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 15.0f);
             for (int row = 0; row < 5; row++)
             {
                 ImGui::TableNextRow();
@@ -3770,9 +3770,9 @@ static void ShowDemoWindowTables()
         if (ImGui::BeginTable("##table1", 3, flags, size))
         {
             ImGui::TableSetupScrollFreeze(0, 1); // Make top row always visible
-            ImGui::TableSetupColumn("One", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Two", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Three", ImGuiTableColumnFlags_None);
+            ImGui::TableSetupColumn("One", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Two", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Three", ImGuiColumnFlags_None);
             ImGui::TableHeadersRow();
 
             // Demonstrate using clipper for large vertical lists
@@ -3823,13 +3823,13 @@ static void ShowDemoWindowTables()
         if (ImGui::BeginTable("##table1", 7, flags, outer_size))
         {
             ImGui::TableSetupScrollFreeze(freeze_cols, freeze_rows);
-            ImGui::TableSetupColumn("Line #", ImGuiTableColumnFlags_NoHide); // Make the first column not hideable to match our use of TableSetupScrollFreeze()
-            ImGui::TableSetupColumn("One", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Two", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Three", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Four", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Five", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Six", ImGuiTableColumnFlags_None);
+            ImGui::TableSetupColumn("Line #", ImGuiColumnFlags_NoHide); // Make the first column not hideable to match our use of TableSetupScrollFreeze()
+            ImGui::TableSetupColumn("One", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Two", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Three", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Four", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Five", ImGuiColumnFlags_None);
+            ImGui::TableSetupColumn("Six", ImGuiColumnFlags_None);
             ImGui::TableHeadersRow();
             for (int row = 0; row < 20; row++)
             {
@@ -3857,7 +3857,7 @@ static void ShowDemoWindowTables()
         // Create a first table just to show all the options/flags we want to make visible in our example!
         const int column_count = 3;
         const char* column_names[column_count] = { "One", "Two", "Three" };
-        static ImGuiTableColumnFlags column_flags[column_count] = { ImGuiTableColumnFlags_DefaultSort, ImGuiTableColumnFlags_None, ImGuiTableColumnFlags_DefaultHide };
+        static ImGuiColumnFlags column_flags[column_count] = { ImGuiColumnFlags_DefaultSort, ImGuiColumnFlags_None, ImGuiColumnFlags_DefaultHide };
 
         if (ImGui::BeginTable("##flags", column_count, ImGuiTableFlags_None))
         {
@@ -3922,12 +3922,12 @@ static void ShowDemoWindowTables()
                     ImGui::TableSetupColumn("B1");
                     ImGui::TableHeadersRow();
 
-                    ImGui::TableNextRow(ImGuiTableRowFlags_None, rows_height);
+                    ImGui::TableNextRow(ImGuiRowFlags_None, rows_height);
                     ImGui::TableNextColumn();
                     ImGui::Text("B0 Cell 0");
                     ImGui::TableNextColumn();
                     ImGui::Text("B0 Cell 1");
-                    ImGui::TableNextRow(ImGuiTableRowFlags_None, rows_height);
+                    ImGui::TableNextRow(ImGuiRowFlags_None, rows_height);
                     ImGui::TableNextColumn();
                     ImGui::Text("B1 Cell 0");
                     ImGui::TableNextColumn();
@@ -4092,7 +4092,7 @@ static void ShowDemoWindowTables()
             for (int row = 0; row < 10; row++)
             {
                 float min_row_height = (float)(int)(TEXT_BASE_HEIGHT * 0.30f * row);
-                ImGui::TableNextRow(ImGuiTableRowFlags_None, min_row_height);
+                ImGui::TableNextRow(ImGuiRowFlags_None, min_row_height);
                 ImGui::TableNextColumn();
                 ImGui::Text("min_row_height = %.2f", min_row_height);
             }
@@ -4167,9 +4167,9 @@ static void ShowDemoWindowTables()
         if (ImGui::BeginTable("##3ways", 3, flags))
         {
             // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide);
-            ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 12.0f);
-            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 18.0f);
+            ImGui::TableSetupColumn("Name", ImGuiColumnFlags_NoHide);
+            ImGui::TableSetupColumn("Size", ImGuiColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 12.0f);
+            ImGui::TableSetupColumn("Type", ImGuiColumnFlags_WidthFixed, TEXT_BASE_WIDTH * 18.0f);
             ImGui::TableHeadersRow();
 
             // Simple storage to output a dummy file-system.
@@ -4246,7 +4246,7 @@ static void ShowDemoWindowTables()
             static bool column_selected[3] = {};
 
             // Instead of calling TableHeadersRow() we'll submit custom headers ourselves
-            ImGui::TableNextRow(ImGuiTableRowFlags_Headers);
+            ImGui::TableNextRow(ImGuiRowFlags_Headers);
             for (int column = 0; column < COLUMNS_COUNT; column++)
             {
                 ImGui::TableSetColumnIndex(column);
@@ -4419,13 +4419,13 @@ static void ShowDemoWindowTables()
             // We use the "user_id" parameter of TableSetupColumn() to specify a user id that will be stored in the sort specifications.
             // This is so our sort function can identify a column given our own identifier. We could also identify them based on their index!
             // Demonstrate using a mixture of flags among available sort-related flags:
-            // - ImGuiTableColumnFlags_DefaultSort
-            // - ImGuiTableColumnFlags_NoSort / ImGuiTableColumnFlags_NoSortAscending / ImGuiTableColumnFlags_NoSortDescending
-            // - ImGuiTableColumnFlags_PreferSortAscending / ImGuiTableColumnFlags_PreferSortDescending
-            ImGui::TableSetupColumn("ID",       ImGuiTableColumnFlags_DefaultSort          | ImGuiTableColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_ID);
-            ImGui::TableSetupColumn("Name",                                                  ImGuiTableColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_Name);
-            ImGui::TableSetupColumn("Action",   ImGuiTableColumnFlags_NoSort               | ImGuiTableColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_Action);
-            ImGui::TableSetupColumn("Quantity", ImGuiTableColumnFlags_PreferSortDescending | ImGuiTableColumnFlags_WidthStretch, -1.0f, MyItemColumnID_Quantity);
+            // - ImGuiColumnFlags_DefaultSort
+            // - ImGuiColumnFlags_NoSort / ImGuiColumnFlags_NoSortAscending / ImGuiColumnFlags_NoSortDescending
+            // - ImGuiColumnFlags_PreferSortAscending / ImGuiColumnFlags_PreferSortDescending
+            ImGui::TableSetupColumn("ID",       ImGuiColumnFlags_DefaultSort          | ImGuiColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_ID);
+            ImGui::TableSetupColumn("Name",                                             ImGuiColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_Name);
+            ImGui::TableSetupColumn("Action",   ImGuiColumnFlags_NoSort               | ImGuiColumnFlags_WidthFixed,   -1.0f, MyItemColumnID_Action);
+            ImGui::TableSetupColumn("Quantity", ImGuiColumnFlags_PreferSortDescending | ImGuiColumnFlags_WidthStretch, -1.0f, MyItemColumnID_Quantity);
             ImGui::TableSetupScrollFreeze(0, 1); // Make row always visible
             ImGui::TableHeadersRow();
 
@@ -4620,12 +4620,12 @@ static void ShowDemoWindowTables()
             // We use the "user_id" parameter of TableSetupColumn() to specify a user id that will be stored in the sort specifications.
             // This is so our sort function can identify a column given our own identifier. We could also identify them based on their index!
             ImGui::TableSetupScrollFreeze(freeze_cols, freeze_rows);
-            ImGui::TableSetupColumn("ID",          ImGuiTableColumnFlags_DefaultSort | ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoHide, -1.0f, MyItemColumnID_ID);
-            ImGui::TableSetupColumn("Name",        ImGuiTableColumnFlags_WidthFixed, -1.0f, MyItemColumnID_Name);
-            ImGui::TableSetupColumn("Action",      ImGuiTableColumnFlags_NoSort | ImGuiTableColumnFlags_WidthFixed, -1.0f, MyItemColumnID_Action);
-            ImGui::TableSetupColumn("Quantity (Long Label)", ImGuiTableColumnFlags_PreferSortDescending | ImGuiTableColumnFlags_WidthStretch, 1.0f, MyItemColumnID_Quantity);// , ImGuiTableColumnFlags_WidthAutoResize);
-            ImGui::TableSetupColumn("Description", ImGuiTableColumnFlags_WidthStretch, 1.0f, MyItemColumnID_Description);
-            ImGui::TableSetupColumn("Hidden",      ImGuiTableColumnFlags_DefaultHide | ImGuiTableColumnFlags_NoSort);
+            ImGui::TableSetupColumn("ID",          ImGuiColumnFlags_DefaultSort | ImGuiColumnFlags_WidthFixed | ImGuiColumnFlags_NoHide, -1.0f, MyItemColumnID_ID);
+            ImGui::TableSetupColumn("Name",        ImGuiColumnFlags_WidthFixed, -1.0f, MyItemColumnID_Name);
+            ImGui::TableSetupColumn("Action",      ImGuiColumnFlags_NoSort | ImGuiColumnFlags_WidthFixed, -1.0f, MyItemColumnID_Action);
+            ImGui::TableSetupColumn("Quantity (Long Label)", ImGuiColumnFlags_PreferSortDescending | ImGuiColumnFlags_WidthStretch, 1.0f, MyItemColumnID_Quantity);// , ImGuiColumnFlags_WidthAutoResize);
+            ImGui::TableSetupColumn("Description", ImGuiColumnFlags_WidthStretch, 1.0f, MyItemColumnID_Description);
+            ImGui::TableSetupColumn("Hidden",      ImGuiColumnFlags_DefaultHide | ImGuiColumnFlags_NoSort);
 
             // Sort our data if sort specs have been changed!
             ImGuiTableSortSpecs* sorts_specs = ImGui::TableGetSortSpecs();
@@ -4670,7 +4670,7 @@ static void ShowDemoWindowTables()
 
                     const bool item_is_selected = selection.contains(item->ID);
                     ImGui::PushID(item->ID);
-                    ImGui::TableNextRow(ImGuiTableRowFlags_None, row_min_height);
+                    ImGui::TableNextRow(ImGuiRowFlags_None, row_min_height);
                     ImGui::TableNextColumn();
 
                     // For the demo purpose we can select among different type of items submitted in the first column
